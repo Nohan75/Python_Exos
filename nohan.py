@@ -19,5 +19,5 @@ def main():
         sys.exit(1)
 
 if __name__ == "__main__":
-    logging.basicConfig(filename="log.log", level=logging.INFO)
+    logging.basicConfig(filename="log.log", level=logging.INFO, format='%(asctime)s [ %(filename)s - l%(lineno)d : %(funcName)s ] - %(message)s')
     main()
