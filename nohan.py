@@ -1,12 +1,23 @@
 import sys
+import logging
 
-while True:
-    year = int(input("Entrez une année : "))
+def is_leap_year(year):
     if year % 4 == 0 and year % 100 != 0 or year % 400 == 0:
-        print("L'année", year, "est bissextile.")
+        logging.info("L'année %d est bissextile.", year)
+        return True
     else:
-        print("L'année", year, "n'est pas bissextile.")
-    if input("Voulez-vous continuer ? (o/n) ") == "n":
-        sys.exit()
+        logging.info("L'année %d n'est pas bissextile.", year)
+        return False
+
+
+def main():
+    if len(sys.argv) == 2:
+        year = int(sys.argv[1])
+        is_leap_year(year)
     else:
-        continue
+        logging.error("Usage: %s <year>", sys.argv[0])
+        sys.exit(1)
+
+if __name__ == "__main__":
+    logging.basicConfig(filename="log.log", level=logging.INFO)
+    main()
